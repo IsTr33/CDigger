@@ -25,10 +25,8 @@ usage: CDigger.py [-h] [-c] [-u URL] [-o OUTPUT]
 Find the C segment network domains.
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -c                    find c segment network hosts and their domains, or
-                        only current host and its domains
-  -u URL, --url URL     set the URL(Host/IP)
-  -o OUTPUT, --output OUTPUT
-                        set output file, default ip.txt
+-h, --help        show this help message and exit
+-c                find c segment network hosts and their domains, or only current host and its domains
+-u URL, --url     URL set the URL(Host/IP)
+-o OUTPUT, --output OUTPUT          set output file, default ip.txt
 
