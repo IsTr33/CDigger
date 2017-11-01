@@ -63,6 +63,7 @@ if __name__ == "__main__":
     fo.write('CDigger result for ip ' + ip + '(host:' + host + '):\n')
 
     if args.c:
+        count = 0
         network = re.sub('\.\d+?$', '', ip)
         fo.write('Search '+network+'.0/24 network hosts and domains\n')
         print '[*]Searching ' + network + '.0/24 network hosts and domains'
@@ -70,6 +71,7 @@ if __name__ == "__main__":
             ip = network + '.' + str(i)
             domains = get_domains(ip)
             if domains:
+                count = count+1
                 printYellow('[+]Find domains in ip ' + ip +'\n')
                 fo.write('\n\n[+]Find domains in ip ' + ip + '\n')
                 for domain ,title in domains:
@@ -77,16 +79,24 @@ if __name__ == "__main__":
                     fo.write('\n[Title]')
                     fo.write(title.encode('utf8'))
                     fo.write('\n' + domain + '\n')
+        if count ==0:
+            printYellow('[*]Sorry, no result found\n')
+            fo.write('Sorry, no result found\n')
     else:
         fo.write('Search ' + ip + ' host domains\n')
         print '[*]Search ' + ip + ' host domains'
         domains = get_domains(ip)
-        printYellow('[+]Find domains in ip ' + ip + '\n')
-        fo.write('\n\n[+]Find domains in ip ' + ip + '\n')
-        for domain, title in domains:
-            print '[*]' + title + '\n[*]' + domain
-            fo.write('\n[Title]')
-            fo.write(title.encode('utf8'))
-            fo.write('\n'+domain+'\n')
+        if domains:
+            printYellow('[+]Find domains in ip ' + ip + '\n')
+            fo.write('\n\n[+]Find domains in ip ' + ip + '\n')
+            for domain, title in domains:
+                print '[*]' + title + '\n[*]' + domain
+                fo.write('\n[Title]')
+                fo.write(title.encode('utf8'))
+                fo.write('\n'+domain+'\n')
+        else:
+            printYellow('[*]Sorry, no result found\n')
+            fo.write('Sorry, no result found\n')
+    fo.close
 
 
